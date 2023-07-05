@@ -1,15 +1,14 @@
 package de.nogaemer.java.backend.test.webshop.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductResponse {
 
-    private String id;
-    private String name;
-    private String description;
-    private String priceInCents;
-    private List<String> tags;
+    private final String id;
+    private final String name;
+    private final String description;
+    private final String priceInCents;
+    private final List<String> tags;
 
     public ProductResponse(String id, String name, String description, String priceInCents, List<String> tags) {
         this.id = id;
