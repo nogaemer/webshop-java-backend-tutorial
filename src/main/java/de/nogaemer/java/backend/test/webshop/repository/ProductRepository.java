@@ -1,11 +1,14 @@
 package de.nogaemer.java.backend.test.webshop.repository;
 
+import de.nogaemer.java.backend.test.webshop.model.Model;
 import de.nogaemer.java.backend.test.webshop.model.ProductCreateRequest;
 import de.nogaemer.java.backend.test.webshop.model.ProductResponse;
 import de.nogaemer.java.backend.test.webshop.utils.ListUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static de.nogaemer.java.backend.test.webshop.utils.UUIDUtils.randomUUID;
 
 public class ProductRepository {
 
@@ -14,7 +17,9 @@ public class ProductRepository {
     public ProductRepository() {
         products.add(
                 new ProductResponse(
-                        randomUUID(),
+                        randomUUID((ArrayList<Model>) products.stream()
+                                .map(p -> (Model) p)
+                                .collect(Collectors.toList())),
                         "AMD Ryzen 9 7950X",
                         "Der neue Prozessor",
                         "79900",
@@ -22,7 +27,9 @@ public class ProductRepository {
         ));
         products.add(
                 new ProductResponse(
-                        randomUUID(),
+                        randomUUID((ArrayList<Model>) products.stream()
+                                .map(p -> (Model) p)
+                                .collect(Collectors.toList())),
                         "Intel Core i9-9900K",
                         "Der neue Prozessor",
                         "59900",
@@ -30,7 +37,9 @@ public class ProductRepository {
         ));
         products.add(
                 new ProductResponse(
-                        randomUUID(),
+                        randomUUID((ArrayList<Model>) products.stream()
+                                .map(p -> (Model) p)
+                                .collect(Collectors.toList())),
                         "NVIDIA GeForce RTX 2080 Ti",
                         "Die neue Grafikkarte",
                         "119900",
@@ -66,7 +75,9 @@ public class ProductRepository {
 
     public ProductResponse save(ProductCreateRequest request) {
         ProductResponse product = new ProductResponse(
-                randomUUID(),
+                randomUUID((ArrayList<Model>) products.stream()
+                        .map(p -> (Model) p)
+                        .collect(Collectors.toList())),
                 request.getName(),
                 request.getDescription(),
                 request.getPriceInCents(),
@@ -74,14 +85,5 @@ public class ProductRepository {
         );
         products.add(product);
         return product;
-    }
-
-    private String randomUUID(){
-        while (true){
-            String uuid = UUID.randomUUID().toString();
-            if (products.stream().filter(p -> p.getId().equals(uuid)).findFirst().orElse(null) == null) {
-                return uuid;
-             }
-        }
     }
 }

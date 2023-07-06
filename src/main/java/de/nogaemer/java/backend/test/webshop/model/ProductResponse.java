@@ -2,7 +2,7 @@ package de.nogaemer.java.backend.test.webshop.model;
 
 import java.util.List;
 
-public class ProductResponse {
+public class ProductResponse implements Model {
 
     private final String id;
     private final String name;
