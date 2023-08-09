@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class CustomerController {
-
-    private val customerRepository: CustomerRepository = CustomerRepository()
+class CustomerController(
+    private val customerRepository: CustomerRepository
+) {
 
     @GetMapping("/customers/{id}")
     fun getCustomerById(
@@ -21,6 +21,11 @@ class CustomerController {
             ResponseEntity.ok(response)
         else
             ResponseEntity.notFound().build()
+    }
+
+    @GetMapping("/customers")
+    fun getAllProducts(): List<CustomerResponse?> {
+        return customerRepository.findAll()
     }
 
 }

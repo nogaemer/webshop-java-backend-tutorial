@@ -4,12 +4,14 @@ import de.nogaemer.java.backend.test.webshop.model.Model;
 import de.nogaemer.java.backend.test.webshop.model.ProductCreateRequest;
 import de.nogaemer.java.backend.test.webshop.model.ProductResponse;
 import de.nogaemer.java.backend.test.webshop.utils.ListUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static de.nogaemer.java.backend.test.webshop.utils.UUIDUtils.randomUUID;
 
+@Service
 public class ProductRepository {
 
     private final ArrayList<ProductResponse> products = new ArrayList<>();
@@ -17,9 +19,7 @@ public class ProductRepository {
     public ProductRepository() {
         products.add(
                 new ProductResponse(
-                        randomUUID((ArrayList<Model>) products.stream()
-                                .map(p -> (Model) p)
-                                .collect(Collectors.toList())),
+                        UUID.randomUUID().toString(),
                         "AMD Ryzen 9 7950X",
                         "Der neue Prozessor",
                         "79900",
@@ -78,10 +78,10 @@ public class ProductRepository {
                 randomUUID((ArrayList<Model>) products.stream()
                         .map(p -> (Model) p)
                         .collect(Collectors.toList())),
-                request.getName(),
-                request.getDescription(),
-                request.getPriceInCents(),
-                request.getTags()
+                request.name(),
+                request.description(),
+                request.priceInCents(),
+                request.tags()
         );
         products.add(product);
         return product;

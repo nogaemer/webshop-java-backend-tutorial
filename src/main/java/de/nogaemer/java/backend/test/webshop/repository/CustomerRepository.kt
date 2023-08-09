@@ -3,8 +3,9 @@ package de.nogaemer.java.backend.test.webshop.repository
 import de.nogaemer.java.backend.test.webshop.model.CustomerResponse
 import de.nogaemer.java.backend.test.webshop.model.Model
 import de.nogaemer.java.backend.test.webshop.utils.UUIDUtils
-import java.util.ArrayList
+import org.springframework.stereotype.Service
 
+@Service
 @Suppress("UNCHECKED_CAST")
 class CustomerRepository{
     private var customers: ArrayList<CustomerResponse> = ArrayList()
@@ -32,6 +33,10 @@ class CustomerRepository{
 
     fun findById(id: String): CustomerResponse? {
         return customers.find { it.id == id }
+    }
+
+    fun findAll(): List<CustomerResponse>{
+        return customers
     }
 
 }

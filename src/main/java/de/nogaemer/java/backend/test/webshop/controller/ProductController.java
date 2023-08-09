@@ -12,7 +12,11 @@ import java.util.List;
 
 public class ProductController {
 
-    ProductRepository productRepository = new ProductRepository();
+    private final ProductRepository productRepository;
+
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @GetMapping("/products")
     public List<ProductResponse> getAllProducts(@RequestParam(value = "tag", required = false) List<String> tags) {
