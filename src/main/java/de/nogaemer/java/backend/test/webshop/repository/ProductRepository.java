@@ -24,7 +24,7 @@ public class ProductRepository {
                         "Der neue Prozessor",
                         "79900",
                         Arrays.asList("AMD", "Ryzen", "Processor", "CPU", "7950X", "16 Kerne", "32 Threads", "4,5 GHz", "4,7 GHz", "AM4", "7nm", "Zen 2", "PCIe 4.0", "Wraith Prism")
-        ));
+                ));
         products.add(
                 new ProductResponse(
                         randomUUID((ArrayList<Model>) products.stream()
@@ -34,7 +34,7 @@ public class ProductRepository {
                         "Der neue Prozessor",
                         "59900",
                         Arrays.asList("Intel", "Core", "Processor", "CPU", "9900K", "8 Kerne", "16 Threads", "3,6 GHz", "5,0 GHz", "LGA 1151", "14nm", "Coffee Lake", "PCIe 3.0", "Wasserkühlung")
-        ));
+                ));
         products.add(
                 new ProductResponse(
                         randomUUID((ArrayList<Model>) products.stream()
@@ -44,10 +44,10 @@ public class ProductRepository {
                         "Die neue Grafikkarte",
                         "119900",
                         Arrays.asList("NVIDIA", "RTX", "Grafikkarte", "GPU", "2080 Ti", "11 GB", "GDDR6", "PCIe 3.0", "Raytracing", "DLSS", "4K", "VR", "Virtual Reality", "Gaming", "Overclocking", "Wasserkühlung")
-        ));
+                ));
     }
 
-    public ArrayList<ProductResponse> findAll(List<String> tags){
+    public ArrayList<ProductResponse> findAll(List<String> tags) {
         if (tags == null) {
             return products;
         } else {

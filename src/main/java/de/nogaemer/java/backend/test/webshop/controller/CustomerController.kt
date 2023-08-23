@@ -15,7 +15,7 @@ class CustomerController(
     @GetMapping("/customers/{id}")
     fun getCustomerById(
         @PathVariable id: String
-    ): ResponseEntity<CustomerResponse>{
+    ): ResponseEntity<CustomerResponse> {
         val response = customerRepository.findById(id)
         return if (response != null)
             ResponseEntity.ok(response)

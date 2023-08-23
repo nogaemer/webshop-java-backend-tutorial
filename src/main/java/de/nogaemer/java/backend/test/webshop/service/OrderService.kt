@@ -1,5 +1,6 @@
 package de.nogaemer.java.backend.test.webshop.service
 
+import de.nogaemer.java.backend.test.webshop.exceptions.IdNotFoundException
 import de.nogaemer.java.backend.test.webshop.model.*
 import de.nogaemer.java.backend.test.webshop.repository.CustomerRepository
 import de.nogaemer.java.backend.test.webshop.repository.OrderPositionRepository
@@ -18,7 +19,7 @@ class OrderService (
 ){
     fun createOrder(order: OrderCreateRequest): OrderResponse {
         customerRepository.findById(order.customerId)
-            ?: throw Exception("Customer not found")
+            ?: throw IdNotFoundException("Customer with id ${order.customerId} not found")
 
         return orderRepository.save(order)
     }
@@ -28,10 +29,10 @@ class OrderService (
         request: OrderPositionCreateRequest
     ): OrderPositionResponse {
         orderRepository.findById(orderId)
-            ?: throw Exception("Order not found")
+            ?: throw IdNotFoundException("Order with id $orderId not found")
 
         productRepository.findById(request.productId)
-            ?: throw Exception("Product not found")
+            ?: throw IdNotFoundException("Product with id ${request.productId} not found")
 
         val orderPositionResponse = OrderPositionResponse(
             id = UUIDUtils.randomUUID(orderRepository.findAll() as ArrayList<Model>?),
