@@ -9,17 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 
 @ControllerAdvice
 class ApiExceptionHandler {
-    val formatter: TextFormatter = TextFormatter()
-//    @ExceptionHandler(WebshopException::class)
-//    fun handleErrors(request: HttpServletRequest, exception: WebshopException): ResponseEntity<ErrorInfo> {
-//
-//        println(formatter.errorInverted("WebshopException"))
-//        println(formatter.subErrorInverted("Message") + exception.message)
-//        println(formatter.subErrorInverted("Exception") + exception + "\n")
-//
-//        val errorInfo = ErrorInfo(exception.message, request.requestURI)
-//        return ResponseEntity.status(exception.statusCode).body(errorInfo)
-//    }
+    private val formatter: TextFormatter = TextFormatter()
 
     @ExceptionHandler(Throwable::class)
     fun handleErrors(request: HttpServletRequest, exception: Throwable): ResponseEntity<ErrorInfo> {

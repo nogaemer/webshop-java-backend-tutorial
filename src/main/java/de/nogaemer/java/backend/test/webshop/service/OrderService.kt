@@ -18,8 +18,8 @@ class OrderService (
     private val customerRepository: CustomerRepository
 ){
     fun createOrder(order: OrderCreateRequest): OrderResponse {
+        //if customer = null throw IllegalArgumentException
         customerRepository.findById(order.customerId)
-            ?: throw IdNotFoundException("Customer with id ${order.customerId} not found")
 
         return orderRepository.save(order)
     }
@@ -36,6 +36,7 @@ class OrderService (
 
         val orderPositionResponse = OrderPositionResponse(
             id = UUIDUtils.randomUUID(orderRepository.findAll() as ArrayList<Model>?),
+            orderId = orderId,
             productId = request.productId,
             quantity = request.quantity
         )
