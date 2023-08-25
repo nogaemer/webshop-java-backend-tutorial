@@ -1,9 +1,9 @@
 package de.nogaemer.java.backend.test.webshop.controller
 
-import de.nogaemer.java.backend.test.webshop.exceptions.WebshopException
 import de.nogaemer.java.backend.test.webshop.model.OrderCreateRequest
 import de.nogaemer.java.backend.test.webshop.model.OrderPositionCreateRequest
 import de.nogaemer.java.backend.test.webshop.model.OrderPositionResponse
+import de.nogaemer.java.backend.test.webshop.model.OrderResponse
 import de.nogaemer.java.backend.test.webshop.service.OrderService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
@@ -19,18 +19,18 @@ class OrderController(
     fun createOrder(
         @RequestBody order: OrderCreateRequest
     ): ResponseEntity<*> {
-        return try {
-            ResponseEntity.ok(orderService.createOrder(order))
-        } catch (e: WebshopException) {
-            ResponseEntity.status(e.statusCode).body(e.message)
-        }
+        return responseEntity(order)
+    }
+
+    private fun responseEntity(order: OrderCreateRequest): ResponseEntity<OrderResponse> {
+        return ResponseEntity.ok(orderService.createOrder(order))
     }
 
     @PostMapping("/orders/{id}/positions")
     fun createOrderPosition(
         @PathVariable(name = "id") orderId: String,
         @RequestBody request: OrderPositionCreateRequest
-    ) : OrderPositionResponse{
+    ): OrderPositionResponse {
         return orderService.createNewPostionForOrder(orderId, request)
     }
 

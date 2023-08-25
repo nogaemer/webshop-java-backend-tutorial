@@ -12,4 +12,8 @@ class OrderPositionRepository {
         orderPositions.add(orderPositionResponse)
     }
 
+    fun findAllByOrdersIds(orderIds: List<String>): List<OrderPositionResponse> {
+        return orderPositions.filter { orderIds.contains(it.orderId) }
+    }
+
 }

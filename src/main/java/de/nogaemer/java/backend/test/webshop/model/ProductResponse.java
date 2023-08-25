@@ -7,10 +7,10 @@ public class ProductResponse implements Model {
     private final String id;
     private final String name;
     private final String description;
-    private final String priceInCents;
+    private final Long priceInCents;
     private final List<String> tags;
 
-    public ProductResponse(String id, String name, String description, String priceInCents, List<String> tags) {
+    public ProductResponse(String id, String name, String description, Long priceInCents, List<String> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -30,7 +30,7 @@ public class ProductResponse implements Model {
         return description;
     }
 
-    public String getPriceInCents() {
+    public Long getPriceInCents() {
         return priceInCents;
     }
 
